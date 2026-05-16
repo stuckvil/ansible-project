@@ -1,6 +1,5 @@
 ---
-- name: install Nginx
-  hosts: localhost
+- hosts: web
   become: yes
 
   tasks:
@@ -8,4 +7,10 @@
       apt:
         name: nginx
         state: present
-        update_cache:  no
+        update_cache: no
+
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
